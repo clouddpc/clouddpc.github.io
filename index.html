@@ -3,18 +3,8 @@
 <head>
 <script>
 
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
 function generateEnrollmentLink() {
-    var enrollmentToken = getParameterByName("et");
+    var enrollmentToken = document.getElementById("et").value;
     var text = "Enroll my device";
     var result = text.link("https://enterprise.google.com/android/enroll?et=" + enrollmentToken);
     document.getElementById("enrollMyDevice").innerHTML = result;
@@ -22,8 +12,9 @@ function generateEnrollmentLink() {
 
 </script>
 </head>
-<body onload="generateEnrollmentLink()">
+<body>
 <h1>
+Enrollment token: <input type="text" id="et" oninput="generateEnrollmentLink()"><br>
 <p id="enrollMyDevice"></p>
 <p><a href="https://enterprise.google.com/android/enroll/invalid">Invalid token</a></p>
 </h1>
