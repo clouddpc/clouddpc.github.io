@@ -10,7 +10,7 @@ function generateEnrollmentLink() {
     document.getElementById("enrollMyDevice").innerHTML = result;
 }
 
-function loadIFrame() {
+function loadWebToken() {
   var webToken = document.getElementById("wt").value;
   var packageName = document.getElementById("pn").value;
   gapi.load('gapi.iframes', function() {
@@ -31,8 +31,8 @@ function loadIFrame() {
 Enrollment token: <input type="text" id="et" oninput="generateEnrollmentLink()"><br>
 <p id="enrollMyDevice"></p>
 <p><a href="https://enterprise.google.com/android/enroll/invalid">Invalid token</a></p>
-Web token: <input type="text" id="wt" oninput="loadIFrame()"><br>
-Package name: <input type="text" id="pn" oninput="loadIFrame()"><br>
+Web token: <input type="text" id="wt" oninput="loadWebToken()"><br>
+Package name: <input type="text" id="pn""><br>
 </h1>
 <div id="container" style="width: 1000px; height: 1000px"></div>
 </body>
