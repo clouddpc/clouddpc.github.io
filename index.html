@@ -3,38 +3,17 @@
 <head>
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
-
-function generateEnrollmentLink() {
-    var enrollmentToken = document.getElementById("et").value;
-    var text = "Enroll my device";
-    var result = text.link("https://enterprise.google.com/android/enroll?et=" + enrollmentToken);
-    document.getElementById("enrollMyDevice").innerHTML = result;
+function launchEnrollmentLink() {
+    var enrollmentToken = new URL(window.location.href).searchParams.get('et');
+    if (enrollmentToken != null) {
+        enrollmentLink = 'https://enterprise.google.com/android/enroll?et=' + enrollmentToken;
+    } else {
+        enrollmentLink = 'https://enterprise.google.com/android/enroll?invalid';
+    }
+    window.open(enrollmentLink, '_self');
 }
-
-function loadWebToken() {
-  var webToken = document.getElementById("wt").value;
-  var packageName = document.getElementById("pn").value;
-  gapi.load('gapi.iframes', function() {
-	var options = {
-	  'url': 'https://play.google.com/managed/mcm?token=' + webToken +'&packageName=' + packageName,
-	  'where': document.getElementById('container'),
-	  'attributes': { style: 'height:1000px', scrolling: 'yes'}
-	}
-
-	var iframe = gapi.iframes.getContext().openChild(options);
-  });
-}
-
 </script>
 </head>
-<body>
-<h1>
-Enrollment token: <input type="text" id="et" oninput="generateEnrollmentLink()"><br>
-<p id="enrollMyDevice"></p>
-<p><a href="https://enterprise.google.com/android/enroll/invalid">Invalid token</a></p>
-Web token: <input type="text" id="wt" oninput="loadWebToken()"><br>
-Package name: <input type="text" id="pn" oninput="loadWebToken()"><br>
-</h1>
-<div id="container" style="width: 1000px; height: 1000px"></div>
+<body onload="launchEnrollmentLink()">
 </body>
 </html>
