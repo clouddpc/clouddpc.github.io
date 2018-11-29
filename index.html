@@ -3,17 +3,18 @@
 <head>
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
-function launchEnrollmentLink() {
+function generateEnrollmentLink() {
     var enrollmentToken = new URL(window.location.href).searchParams.get('et');
-    if (enrollmentToken != null) {
-        enrollmentLink = 'https://enterprise.google.com/android/enroll?et=' + enrollmentToken;
-    } else {
-        enrollmentLink = 'https://enterprise.google.com/android/enroll?invalid';
-    }
-    window.open(enrollmentLink, '_self');
+    var text = "Please click here to continue setting up your work device...";
+    var result = text.link("https://enterprise.google.com/android/enroll?et=" + enrollmentToken);
+    document.getElementById("clickToRedirect").innerHTML = result;
 }
+
 </script>
 </head>
-<body onload="launchEnrollmentLink()">
+<body onload="generateEnrollmentLink()">
+<center>
+<p id="clickToRedirect"></p>
+</center>
 </body>
 </html>
