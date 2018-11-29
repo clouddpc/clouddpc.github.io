@@ -6,10 +6,14 @@
 function generateEnrollmentLink() {
     var enrollmentToken = new URL(window.location.href).searchParams.get('et');
     var text = "Please click here to continue setting up your work device...";
-    var result = text.link("https://enterprise.google.com/android/enroll?et=" + enrollmentToken);
+    if (enrollmentToken != null) {
+        enrollmentLink = 'https://enterprise.google.com/android/enroll?et=' + enrollmentToken;
+    } else {
+        enrollmentLink = 'https://enterprise.google.com/android/enroll?invalid';
+    }
+    var result = text.link(enrollmentLink);
     document.getElementById("clickToRedirect").innerHTML = result;
 }
-
 </script>
 </head>
 <body onload="generateEnrollmentLink()">

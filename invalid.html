@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+function generateEnrollmentLink() {
+    var enrollmentToken = new URL(window.location.href).searchParams.get('et');
+    var text = "Please click here to continue setting up your work device...";
+    if (enrollmentToken != null) {
+        enrollmentLink = 'https://enterprise.google.com/android/enroll?et=' + enrollmentToken;
+    } else {
+        enrollmentLink = 'https://enterprise.google.com/android/enroll?invalid';
+    }
+    var result = text.link(enrollmentLink);
+    document.getElementById("clickToRedirect").innerHTML = result;
+}
+</script>
 </head>
 <body onload="generateEnrollmentLink()">
 <center>
-<h1>
-Invalid token :-(
-</h1>
+<p id="clickToRedirect"></p>
 </center>
 </body>
 </html>
