@@ -9,7 +9,7 @@ function generateEnrollmentLink() {
     if (enrollmentToken != null) {
         enrollmentLink = 'https://enterprise.google.com/android/enroll?et=' + enrollmentToken;
     } else {
-        enrollmentLink = 'https://enterprise.google.com/android/enroll?invalid';
+        enrollmentLink = 'https://enterprise.google.com/android/enroll/invalid';
     }
     var result = text.link(enrollmentLink);
     document.getElementById("clickToRedirect").innerHTML = result;
