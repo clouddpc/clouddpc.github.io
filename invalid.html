@@ -4,15 +4,16 @@
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
 function generateEnrollmentLink() {
-    var enrollmentToken = new URL(window.location.href).searchParams.get('et');
-    var text = "Please click here to continue setting up your work device...";
-    if (enrollmentToken != null) {
-        enrollmentLink = 'https://enterprise.google.com/android/enroll?et=' + enrollmentToken;
+    var userAgent = navigator.userAgent.toLowerCase();
+    var isAndroid = userAgent.indexOf("android") > -1;
+    if (isAndroid) {
+        var text = "Please click here to continue setting up your work device...";
+        var enrollmentLink = 'https://enterprise.google.com/android/enroll/invalid';
+        var result = text.link(enrollmentLink);
+        document.getElementById("clickToRedirect").innerHTML = result;
     } else {
-        enrollmentLink = 'https://enterprise.google.com/android/enroll/invalid';
+        window.location = 'https://www.android.com/enterprise/';
     }
-    var result = text.link(enrollmentLink);
-    document.getElementById("clickToRedirect").innerHTML = result;
 }
 </script>
 </head>
