@@ -7,7 +7,7 @@ function generateEnrollmentLink() {
     var userAgent = navigator.userAgent.toLowerCase();
     var isAndroid = userAgent.indexOf("android") > -1;
     if (isAndroid) {
-        var text = "Please click here to continue setting up your work device...";
+        var text = "Please click here to continue...";
         var enrollmentLink = 'https://enterprise.google.com/android/enroll/invalid';
         var result = text.link(enrollmentLink);
         document.getElementById("clickToRedirect").innerHTML = result;

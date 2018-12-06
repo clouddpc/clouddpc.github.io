@@ -8,7 +8,7 @@ function generateEnrollmentLink() {
     var isAndroid = userAgent.indexOf("android") > -1;
     if (isAndroid) {
         var enrollmentToken = new URL(window.location.href).searchParams.get('et');
-        var text = "Please click here to continue setting up your work device...";
+        var text = "Please click here to continue...";
         if (enrollmentToken != null) {
             enrollmentLink = 'https://enterprise.google.com/android/enroll?et=' + enrollmentToken;
         } else {
